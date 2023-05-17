@@ -10,7 +10,7 @@ import os
 import csv
 
 #Provide path
-budget_data_csv = os.path.join("..", "Resources", "budget_data.csv")
+budget_data_csv = os.path.join("Resources", "budget_data.csv")
 
 #Create empty lists
 
@@ -28,7 +28,8 @@ with open(budget_data_csv) as file:
     
     month =[]
     profitloss = []
-    profit_change = [] 
+    profit_change = []
+    net_profit = []
 
     profitloss = 0
     total_profitloss = 0
@@ -41,21 +42,16 @@ with open(budget_data_csv) as file:
     
     for data in reader:
 
-        month.append(file[0])
-        profitloss.append(file[1])
-        
-        i = 0
-        for i in reader:
-            if i >= 1:
-        
-                profit_change.append(float(profitloss[i]) - float(profitloss[i-1]))
+        profitloss.append(data[1])
+    
+        profit_change.append(float(profitloss[data]) - float(profitloss[data-1]))
+            
+        total_profitloss += float(data[1])
                 
-                total_profitloss += float(reader[1])
-                i += 1
 
         #Find average change --- sum/no. of values
 
-        average_change = (float(profit_change)) / total_months
+    average_change = (float(profit_change)) / total_months
 
     #Loop through to find maximum increase and decrease with the month from the same row
     o = 2
@@ -65,14 +61,14 @@ with open(budget_data_csv) as file:
             max_increase = float(profitloss[o])
             month_increase = str(month[o])
 
-            o += 1
+
 
         elif float(profitloss[o]) < float(profitloss[o-1]):
 
             max_decrease = float(profitloss[o])
             month_decrease = str(month[o])
 
-            o += 1
+            
         
 
 

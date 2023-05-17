@@ -14,35 +14,42 @@ import csv
 
 total_votes = 0
 vote_percents = 0
-candidate_total = 0
-candidate_name = ""
+candidate_vote_total = 0
 
 ballot_id = []
-county = []
-#candidate = []
 candidates = []
 candidate_vote_percent = []
-candidate_vote_total = []
+votes_per_candidate = []
 
-votes_csv = os.path.join("..", "Resources", "election_data.csv")
-
+#Path and reader, without header
+votes_csv = os.path.join("Resources", "election_data.csv")
 with open(votes_csv) as vote_file:
     vote_reader = csv.reader(vote_file)
     header = next(vote_reader)
-
+    
+    #total votes
     total_votes = len(list(vote_file))
     
-
+    #Candidate list
     for row in vote_reader:
-        print(candidates[-1])
-        if len(candidates) == 0:
-            candidates.append(row[2]) 
-        elif (row[2]) != candidates[-1]:
-            candidates.append(row[2]) 
+        candidates.append(row[2])
+        candidate = row[2]
+        
+        if candidate not in candidates:
+            candidates.append(candidate) 
+            
+    #Perentage of votes each candidate won
+    for row in vote_reader:
+        candidates.append[2]
+        candidate = row[2]
+
+        if candidate == candidates:
+            candidate_vote_total += 1
+        
+    
         
 
         #ballot_id.append(row[0])
-        #county.append(row[1])
         #candidate.append(row[2])
         
         #ballot_id = (row[0])
@@ -73,13 +80,9 @@ with open(votes_csv) as vote_file:
         #     print(f"{candidate_name}")
         #     candidate_total = 0
 
-        #     #i += 1
-
         # elif str(candidate[i]) == str(candidate[i - 1]):
         #     candidate_total += 1
 
-
-    #     i += 1
 
     #Percent of votes and total votes for each candidate
     #o = 0
@@ -88,6 +91,6 @@ with open(votes_csv) as vote_file:
         
         
 #print(f"Total Votes: {total_votes}")
-#print(candidates)
+print(candidates)
         
 
