@@ -11,6 +11,10 @@
 
 #Codecademy lessons revisit to relearn fundamentals of looping
 
+#GeeksforGeeks article example of working with CSV in python, options to list candidates : https://www.geeksforgeeks.org/working-csv-files-python/
+
+#Forum for more examples of looping through CSV: https://stackoverflow.com/questions/45947887/python-looping-through-csv-files-and-their-columns
+
 #Example of appending CSV data in a loop: https://stackoverflow.com/questions/57363725/how-to-loop-through-a-csv-file-in-python?fbclid=IwAR0VWiRa9xGvll4vaBqXZpBJ3Y8eD5NFNzyQVaKXyPIewXXBjG5hfQvA5Xg
 
 #Forum discussing different ways to count rows: https://stackoverflow.com/questions/27504056/row-count-in-a-csv-file
