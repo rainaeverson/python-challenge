@@ -8,18 +8,17 @@ import csv
 #Total number of votes each candidate won
 #Winner of the election
 
-#ballot id [0]
-#county [1]
-#candidate [2]
-
 total_votes = 0
 vote_percents = 0
 candidate_vote_total = 0
+winning_candidate = ""
+winning_vote_total = 0
+percentage_votes = 0
 
 ballot_id = []
 candidates = []
-candidate_vote_percent = []
-votes_per_candidate = []
+candidate_votes = {}
+candidate_total = []
 
 #Path and reader, without header
 votes_csv = os.path.join("Resources", "election_data.csv")
@@ -27,70 +26,58 @@ with open(votes_csv) as vote_file:
     vote_reader = csv.reader(vote_file)
     header = next(vote_reader)
     
-    #total votes
-    total_votes = len(list(vote_file))
-    
-    #Candidate list
+    #Candidate list & total votes
     for row in vote_reader:
-        candidates.append(row[2])
-        candidate = row[2]
-        
-        if candidate not in candidates:
-            candidates.append(candidate) 
-            
-    #Perentage of votes each candidate won
-    for row in vote_reader:
-        candidates.append[2]
-        candidate = row[2]
+        total_votes += 1
+        if row[2] not in candidates:
+            candidates.append(row[2])
+            candidate_votes[row[2]] = 0
+        candidate_votes[row[2]] += 1
+    print("")
+    print("Election Results")
+    print("-------------------------")
+    print(f"Total Votes: {total_votes}")
+    print("")
 
-        if candidate == candidates:
-            candidate_vote_total += 1
-        
+    #Percentage of votes & adding total, percents to candidate dictionary
+    for candidate in candidate_votes:
+        votes = candidate_votes[candidate]
+        percentage_votes = round(float(votes) / float(total_votes) * 100, 3)
+        candidate_votes[row[2]] += percentage_votes
+
+        if votes > winning_vote_total:
+            winning_vote_total = votes
+            winning_candidate = candidate
     
-        
+    print(f"Charles Casper Stockham: {percentage_votes}% {candidate_votes['Charles Casper Stockham']}")
+    print(f"Diana DeGette: {percentage_votes}% {candidate_votes['Diana DeGette']}")
+    print(f"Raymon Anthony Doane: {percentage_votes}% {candidate_votes['Raymon Anthony Doane']}")
+    print("")
+    print("--------------------------")
+    print("")
+    print(f"Winner: {winning_candidate}")
+    print("")
+    print("---------------------------")
 
-        #ballot_id.append(row[0])
-        #candidate.append(row[2])
-        
-        #ballot_id = (row[0])
-        #county = (row[1])
-        #candidate = (row[2])
-        #store "location" of empty list here ?
-        #candidate_vote_total.append(vote_reader)
+    #Export to text file
+f = open("analysis.txt", "w")
 
-        #total_votes = len(list(ballot_id))
-        #print(total_votes)
+print ("", file=f)
+print ("Election Results", file=f)
+print ("-------------------------", file=f)
+print (f"Total Votes: {total_votes}", file=f)
+print ("", file=f)
+print (f"Charles Casper Stockham: {percentage_votes}% {candidate_votes['Charles Casper Stockham']}", file=f)
+print (f"Diana DeGette: {percentage_votes}% {candidate_votes['Diana DeGette']}", file=f)
+print (f"Raymon Anthony Doane: {percentage_votes}% {candidate_votes['Raymon Anthony Doane']}", file=f)
+print ("", file=f)
+print ("--------------------------", file=f)
+print ("", file=f)
+print (f"Winner: {winning_candidate}", file=f)
+print ("", file=f)
+print ("---------------------------", file=f)
 
-        #print("Candidates are:" + ", ".join(candidate for candidate in candidates))
+f.close()
 
-    #List Candidates
-        #i = 0
-    # for i in row:
-
-        # candidates.append(str(candidate[i]))
-
-        # if str(candidate[i]) != str(candidate[i - 1]):
-        #     candidates.append(str(candidate[i]))
-
-            
-
-        #     #candidate_vote_total.append(int(candidate_total)) #???
-        
-        #     candidate_name = str(candidate[i])
-        #     print(f"{candidate_name}")
-        #     candidate_total = 0
-
-        # elif str(candidate[i]) == str(candidate[i - 1]):
-        #     candidate_total += 1
-
-
-    #Percent of votes and total votes for each candidate
-    #o = 0
-    #for o in vote_reader:
-
-        
-        
-#print(f"Total Votes: {total_votes}")
-print(candidates)
         
 
