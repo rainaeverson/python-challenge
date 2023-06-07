@@ -44,7 +44,8 @@ with open(votes_csv) as vote_file:
         votes = candidate_votes[candidate]
         percentage_votes = round(float(votes) / float(total_votes) * 100, 3)
         candidate_votes[row[2]] += percentage_votes
-
+        
+        #Winning Candidate
         if votes > winning_vote_total:
             winning_vote_total = votes
             winning_candidate = candidate

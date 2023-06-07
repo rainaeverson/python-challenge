@@ -1,9 +1,9 @@
 #Total months in dataset
 #Net total of profits/losses
 #Changes in profits/losses
-#Average change ^
+#Average change of profits/losses
 #Greatest increase
-#Greated decrease
+#Greatest decrease
 
 #Import modules
 import os
@@ -12,13 +12,8 @@ import csv
 #Provide path
 budget_data_csv = os.path.join("Resources", "budget_data.csv")
 
-#Create empty lists
-
-
-
-#Read in CSV file
+#Read in CSV file, skip header
 with open(budget_data_csv) as file:
-
     reader = csv.reader(file, delimiter=',')
     header = next(reader)
     
@@ -54,18 +49,12 @@ with open(budget_data_csv) as file:
 
             max_increase = float(profit_change[row_index - 1])
             month_increase = data[0]
-
-
-
         elif float(profit_change[row_index - 1]) < max_decrease:
 
             max_decrease = float(profit_change[row_index - 1])
             month_decrease = data[0]
-
         row_index = row_index + 1
-        
     average_change = sum(profit_change) / len(profit_change)
-
     total_months = len(list(file))
 
 print("")
